@@ -29,7 +29,7 @@ public class WizardOfJokesApplication {
 	@Bean
     @Autowired
     public ReadyListener readyListener(ResourceLoader resourceLoader,
-                                       @Value("${S3_URL") String s3Url) {
+                                       @Value("${S3_URL}") String s3Url) {
 	    return new ReadyListener(resourceLoader, s3Url);
     }
 
