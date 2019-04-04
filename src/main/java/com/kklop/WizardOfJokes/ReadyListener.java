@@ -19,7 +19,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class ReadyListener implements EventListener {
 
-    Logger LOGGER = LoggerFactory.getLogger(ReadyListener.class);
+    private Logger LOGGER = LoggerFactory.getLogger(ReadyListener.class);
 
     private ResourceLoader resourceLoader;
     private String s3Url;
@@ -40,7 +40,7 @@ public class ReadyListener implements EventListener {
             System.out.println("message received");
             MessageChannel channel = messageReceivedEvent.getChannel();
             if (messageReceivedEvent.getMessage().getMentionedMembers().stream()
-                    .filter(user -> user.getUser().getId().equals(id)).findAny().isPresent()) {
+                    .anyMatch(user -> user.getUser().getId().equals(id))) {
                 String msg = messageReceivedEvent.getMessage().getContentDisplay();
                 if (msg.contains("/tellJoke")) {
                     String message = randomJoke(getJokes());

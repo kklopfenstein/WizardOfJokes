@@ -1,0 +1,4 @@
+# Wizard Of Jokes
+
+## Usage
+

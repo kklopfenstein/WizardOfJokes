@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.aws.context.config.annotation.EnableContextInstanceData;
 import org.springframework.cloud.aws.context.config.annotation.EnableContextResourceLoader;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 
 import javax.security.auth.login.LoginException;

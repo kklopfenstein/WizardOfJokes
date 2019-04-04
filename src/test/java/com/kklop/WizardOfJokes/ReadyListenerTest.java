@@ -20,7 +20,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class ReadyListenerTest {
+class ReadyListenerTest {
 
     private ReadyListener readyListener;
 
@@ -60,7 +60,7 @@ public class ReadyListenerTest {
 
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         readyListener = new ReadyListener(resourceLoader, S3_URL);
         when(event.getJDA()).thenReturn(jda);
         when(jda.getSelfUser()).thenReturn(selfUser);
@@ -74,7 +74,7 @@ public class ReadyListenerTest {
     }
 
     @Test
-    public void receiveTellJokeAndSendJoke() throws IOException {
+    void receiveTellJokeAndSendJoke() throws IOException {
         when(resourceLoader.getResource(anyString())).thenReturn(resource);
         when(resource.getInputStream()).thenReturn(new ByteArrayInputStream(JOKES.getBytes()));
         when(event.getMessage().getContentDisplay()).thenReturn("/tellJoke");
@@ -83,14 +83,14 @@ public class ReadyListenerTest {
     }
 
     @Test
-    public void receiveHelpAndSendHelp() {
+    void receiveHelpAndSendHelp() {
         when(event.getMessage().getContentDisplay()).thenReturn("/help");
         readyListener.onEvent(event);
         verify(messageChannel, times(1)).sendMessage(ReadyListener.HELP_TEXT);
     }
 
     @Test
-    public void recieveUnkownMessageAndSendWarning() {
+    void recieveUnkownMessageAndSendWarning() {
         when(event.getMessage().getContentDisplay()).thenReturn("sdfsdf");
         readyListener.onEvent(event);
         verify(messageChannel, times(1)).sendMessage(ReadyListener.UNKOWN_TEXT);
